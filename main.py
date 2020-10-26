@@ -6,6 +6,13 @@ from requests.auth import HTTPBasicAuth
 from os import environ
 from sodapy import Socrata
 
+import os
+import threading
+import math
+import time
+from math import ceil
+from time import time
+
 parser = argparse.ArgumentParser(description='Process data from parking violations.')
 parser.add_argument('--page_size', type=int, help='how many rows to get per page - starts at page 1, not 0', required=True)
 parser.add_argument('--num_pages', type=int, help='how many pages to get in total')
@@ -87,8 +94,12 @@ if __name__ == '__main__':
 	#r = client.get(DATASET_ID, select='COUNT(*)', where=p )
 	#print(r)
 	
-	def violations(rows):
+	def violations(i):
 		r = []
+		s1 = time()
+		rows = client.get(DATASET_ID, limit=args.page_size, offset=i*args.page_size, where=p)
+		print(f"API CALL TIME: {time()-s1}")
+		
 		for row in rows:
 			t = row["violation_time"]
 			#remove unwanted attribute
@@ -148,7 +159,6 @@ if __name__ == '__main__':
 	i=1
 	while i <= nump:
 		print(f"page {i}")
-		resp = client.get(DATASET_ID, limit=args.page_size, offset=i*args.page_size, where=p)
-		violations(resp)
+		violations(i)
 		#print(resp)
 		i += 1
