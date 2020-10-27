@@ -40,6 +40,23 @@ ES_PASSWORD = os.environ["ES_PASSWORD"]
 
 if __name__ == '__main__':
 
+	client = Socrata(
+		"data.cityofnewyork.us",
+		APP_TOKEN,
+		timeout = 60,
+	)
+
+	p = 'issue_date > "{start}" AND issue_date < "{end}"'.format(start=args.start_date, end=args.end_date)
+	print("Dataset filters: " + p)
+	#rows = client.get(DATASET_ID, limit=args.page_size, where=p)
+	c = client.get(DATASET_ID, select='COUNT(*)', where=p )
+	x = [([d[k] for k in d]) for d in c] 
+	x = x[0][0]
+	x = int(x)
+	#print(x)
+	y = args.num_pages*args.page_size
+	#print(type(x))
+
 #create ES index
 
 	try:
@@ -77,23 +94,11 @@ if __name__ == '__main__':
 		)
 		resp.raise_for_status()
 		print(resp.json())
-	except Exception as e:
-		print(f"Error!: {e}, Index already exists! Skipping")
+	except Exception:
+		print("Index already exists! Skipping")
 
     ##get data from Socrata and create doc in ES
 
-	client = Socrata(
-		"data.cityofnewyork.us",
-		APP_TOKEN,
-		timeout = 60,
-	)
-
-	p = 'issue_date > "{start}" AND issue_date < "{end}"'.format(start=args.start_date, end=args.end_date)
-	print("Dataset filters: " + p)
-	#rows = client.get(DATASET_ID, limit=args.page_size, where=p)
-	#r = client.get(DATASET_ID, select='COUNT(*)', where=p )
-	#print(r)
-	
 	def violations(i):
 		r = []
 		s1 = time()
@@ -154,11 +159,21 @@ if __name__ == '__main__':
 			r.append(resp.json())
 		return [print(i) for i in r]
 	
-	#violations(rows)
+	if x >= y:
+		s0 = time()
+		threads = []
+		for i in range(nump):
+			t = threading.Thread(
+				target=violations,
+				args=[i],
+			)
+			threads.append(t)
+			t.start()
 
-	i=1
-	while i <= nump:
-		print(f"page {i}")
-		violations(i)
-		#print(resp)
-		i += 1
+		# wait for all to finish
+		for th in threads:
+			th.join()
+
+		print(f"DONE {time()-s0}")
+	else:
+		print("Error: num_pages*page_size exceeds total rows in filtered set- " + str(x))
