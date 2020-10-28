@@ -1,6 +1,8 @@
 # parking_violations
 *NYC Open Data - Open Parking and Camera Violations Dataset Analysis*
 
+Link: https://github.com/zafirah-b/parking_violations/blob/main/README.md
+
 ## Instructions
 * Place unzipped Project01 folder in a folder you can access
 * Navigate to that folder in the terminal and open it using `cd`
