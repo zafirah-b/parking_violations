@@ -51,7 +51,7 @@ by considering the data structure and time complexity for the search when redesi
 [1]:https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20count%20by%20agency1.PNG
 
 * This bar chart shows that the most violations are given out by the Traffic agency, followed by Department of Transportation (DOT) and Police Department. Upon inspection of the data, police department appears to be the same as Traffic agency as it reports precincts; whereas the DOT always reports precinct as 0. This could be addressed with data cleaning.
-* All violations by the DOT have a fine amount of $50, whereas the fine amount for Traffic violations vary depending on the violation. Some of the Traffic violations are more costly, at a fine of $115.
+* All violations by the DOT have a fine amount of $50, whereas the fine amount for Traffic violations vary depending on the violation. Some of the Traffic violations are more costly, at a fine of $115. The $115 fines correspond to the most ticketed items - *no standing* and *no parking*.
 
 # Violations Dashboard (by agency and precinct)
 ![Chart 2](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20Heat%20map%20violations1.PNG)
@@ -59,10 +59,19 @@ by considering the data structure and time complexity for the search when redesi
 * On this heat map dashboard, we see that the most violations issued by the Traffic agency are in Manhattan (NY) for *no standing-day/time limits*. 
 * The most violations issued by precinct 19 are for *double parking*, precinct 14 for *failing to display muni meter receipt*, and by precinct 18 for *no standing-day/time limits*. The precincts shown are the precincts with the most violations.
 
-# c3
+# Violations Issued by DOT
+![Chart 5] (https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20Heat%20map%20violations%20DOT.PNG)
+* From this heat map, we see that the most violations issued by the DOT are for *school zone speed*, with second most for *failure to stop at red light*. This makes sense because a red traffic light is clearly visible and normally in a spot a driver would expect, rather than a school zone speed restriction where the signs may unexpected and overlooked. Also, failure to stop at a red light is more imminently dangerous to the driver than a school zone speed restriction.
+
+# Violations over a 24-hr period
 ![Chart 3](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violations%20by%20time.PNG)
 
-# c4
+* These plots show violations count over a 24-hr period. Gaps in the curve may be due to data rows that were not yet loaded for the specific timeframe.
+* The *School Zone* violation plot appears to have a more consistent count over time with less drastic peaks as that of *No Standing* violation plot. This makes sense because the *School Zone* violations are issued by the DOT and detected/reported via camera so there is constant monitoring of those locations.
+* In contrast, the *No standing* violations are issued by Traffic agency by officers on foot. This plot has many peaks. This makes sense because the locations are spot checked by officers during their walking route so violations are not constantly picked up. Once an officer passes a location during their shift, any violations that occur after may be underreported.
+
+# Violations Status by Type
 ![Chart 4](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violation%20status1.PNG)
 
-* need Kibana Dashboard attachment in folder
+* It appears that the most contested violations are *no standing* and *double parking*. This makes sense because as discussed previously, these are issued by officers and  there isn't photo evidence like there is for DOT camera-detected violations, which are not contested much.
+
