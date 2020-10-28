@@ -60,7 +60,7 @@ by considering the data structure and time complexity for the search when redesi
 * The most violations issued by precinct 19 are for *double parking*, precinct 14 for *failing to display muni meter receipt*, and by precinct 18 for *no standing-day/time limits*. The precincts shown are the precincts with the most violations.
 
 # Violations Issued by DOT
-![Chart 5] (https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20Heat%20map%20violations%20DOT.PNG)
+![Chart 5](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20Heat%20map%20violations%20DOT.PNG)
 * From this heat map, we see that the most violations issued by the DOT are for *school zone speed*, with second most for *failure to stop at red light*. This makes sense because a red traffic light is clearly visible and normally in a spot a driver would expect, rather than a school zone speed restriction where the signs may unexpected and overlooked. Also, failure to stop at a red light is more imminently dangerous to the driver than a school zone speed restriction.
 
 # Violations over a 24-hr period
