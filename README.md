@@ -61,9 +61,7 @@ by considering the data structure and time complexity for the search when redesi
 * On this heat map dashboard, we see that the most violations issued by the Traffic agency are in Manhattan (NY) for *no standing-day/time limits*. 
 * The most violations issued by precinct 19 are for *double parking*, precinct 14 for *failing to display muni meter receipt*, and by precinct 18 for *no standing-day/time limits*. The precincts shown are the precincts with the most violations.
 
-![Image][1]
-
-[1]https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violations%20by%20time.PNG
+![Chart 3](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violations%20by%20time.PNG)
 
 ![Image][1]
 
