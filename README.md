@@ -54,17 +54,15 @@ by considering the data structure and time complexity for the search when redesi
 * All violations by the DOT have a fine amount of $50, whereas the fine amount for Traffic violations vary depending on the violation. Some of the Traffic violations are more costly, at a fine of $115.
 
 # Violations Dashboard (by agency and precinct)
-![Image][2]
-
-[2]https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20Heat%20map%20violations1.PNG
+![Chart 2](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20Heat%20map%20violations1.PNG)
 
 * On this heat map dashboard, we see that the most violations issued by the Traffic agency are in Manhattan (NY) for *no standing-day/time limits*. 
 * The most violations issued by precinct 19 are for *double parking*, precinct 14 for *failing to display muni meter receipt*, and by precinct 18 for *no standing-day/time limits*. The precincts shown are the precincts with the most violations.
 
+# c3
 ![Chart 3](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violations%20by%20time.PNG)
 
-![Image][1]
-
-[1]https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violation%20status1.PNG
+# c4
+![Chart 4](https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violation%20status1.PNG)
 
 * need Kibana Dashboard attachment in folder
