@@ -25,7 +25,7 @@ docker run \
   -e ES_HOST="ES URL" \
   -e ES_USERNAME="YOUR ES MASTER USERNAME" \
   -e ES_PASSWORD="YOUR ES MASTER PASSWORD" \
-  parking:1.0 --page_size=x --num_pages=y'
+  parking:1.0 --page_size=x --num_pages=y --start_date=<date> --end_date=<date>
 ```
 
 ## Design Considerations
@@ -39,12 +39,27 @@ docker run \
 While the information contained in the summons image is useful for further analysis, more processing would be needed to obtain the information from the image.
 * For the function, I added date filters so that a dataset for a specific range could be obtained, in order to perform meaningful analysis. 
 However this resulted in the call taking longer to run, and each subsequent run takes even longer. This could be improved
-by considering the data structure and time complexity for the search. Prior to adding threading, this function worked as expected, but after I added the threading for some reason the data returned is offset by a year. I was unable to debug this.
+by considering the data structure and time complexity for the search when redesigning the code. Prior to adding threading, this function worked as expected, but after I added the threading for some reason the data returned is offset by a year. I was unable to debug this.
 * Added threading functionality so that each request doesn't wait on the current one to finish before starting. The number of threads is based on num_pages which is why num_pages is recommended to be a maximum of 5.
+* Initially there was an if statement to check that the total rows requested didn't exceed the number of filtered rows available but I removed it because when page_size was large (100,000) it took too long to run. In addition, that check had to be performed before loading any data.
+
+## Data Analysis
+
+![Image][1]
+
+[1]:https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20count%20by%20agency1.PNG
+
+![Image][1]
+
+[1]https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20Heat%20map%20violations1.PNG
 
 
 ![Image][1]
 
-[1]:https://github.com/zafirah-b/parking_violations/blob/main/OPCV%20Tickets%20by%20time.JPG
+[1]https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violations%20by%20time.PNG
+
+![Image][1]
+
+[1]https://github.com/zafirah-b/parking_violations/blob/main/kibana%20dashboard%20-%20violation%20status1.PNG
 
 * need Kibana Dashboard attachment in folder
